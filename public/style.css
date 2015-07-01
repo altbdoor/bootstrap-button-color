@@ -1,0 +1,13 @@
+/* elements */
+html {overflow-y:scroll; min-width:320px}
+body {padding:50px 0}
+h1 {margin-top:0}
+
+/* bootstrap */
+.alert {padding:5px 10px; margin-bottom:10px}
+.form-group {padding-top:15px}
+
+/* custom */
+#content {padding:50px 0}
+#generator-form {margin:15px 0 5px; padding:15px 0; border-width:1px 0; border-style:solid; border-color:#eee}
+.output {margin-top:10px; font-family:Menlo, Monaco, Consolas, "Courier New", monospace; resize:vertical}

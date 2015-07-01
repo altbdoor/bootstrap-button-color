@@ -1,0 +1,122 @@
+---
+---
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Bootstrap Button Color · altbdoor.github.io</title>
+	
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="public/style.css">
+	
+	<style id="output-style-default"></style>
+	<style id="output-style-themed"></style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h1>Bootstrap Button Color</h1>
+				<h4>A generator for Bootstrap's v3.x Buttons</h4>
+				
+				<form id="generator-form" class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Version</label>
+						<div class="col-sm-9">
+							<select id="form-version" class="form-control">
+								{% for item in site.data.map reversed %}
+									{% if forloop.first == true %}
+										<option value="{{ item }}" selected>{{ item }} (Latest)</option>
+									{% else %}
+										<option value="{{ item }}">{{ item }}</option>
+									{% endif %}
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Background color</label>
+						<div class="col-sm-9">
+							<div class="input-group">
+								<span class="input-group-addon">#</span>
+								<input type="text" id="form-bg" class="form-control" value="5cb85c">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Text color</label>
+						<div class="col-sm-9">
+							<div class="input-group">
+								<span class="input-group-addon">#</span>
+								<input type="text" id="form-color" class="form-control" value="fff">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Class name</label>
+						<div class="col-sm-9">
+							<input type="text" id="form-class" class="form-control" value="custom">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-9 col-sm-offset-3">
+							<input type="submit" value="Generate" class="btn btn-primary btn-lg">
+							<input type="reset" value="Reset to Default" class="btn btn-default btn-lg">
+						</div>
+					</div>
+				</form>
+				
+				<div class="row">
+					<div class="col-sm-6">
+						<h4>Output Default</h4>
+						<button class="btn btn-block btn-custom-default">Normal</button>
+						<button class="btn btn-block btn-custom-default active">Active</button>
+						<button class="btn btn-block btn-custom-default" disabled>Disabled</button>
+						
+						<textarea id="output-default" rows="15" class="output form-control"></textarea>
+					</div>
+					<div class="col-sm-6">
+						<hr class="visible-xs-block">
+						
+						<h4>Output Themed</h4>
+						<button class="btn btn-block btn-custom-themed">Normal</button>
+						<button class="btn btn-block btn-custom-themed active">Active</button>
+						<button class="btn btn-block btn-custom-themed" disabled>Disabled</button>
+						
+						<textarea id="output-themed" rows="15" class="output form-control"></textarea>
+					</div>
+				</div>
+				
+				<hr>
+				
+				<div class="text-center small text-muted">
+					<ul class="list list-inline">
+						<li><a href="https://github.com/altbdoor/bootstrap-grid/">GitHub</a></li>
+						<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
+						<li><a href="http://lesscss.org/">Less</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	{% for item in site.data.map %}
+	<script type="text/plain" id="component-{{ item | slugify }}">{% include_relative less/{{ item }}.less %}</script>
+	{% endfor %}
+	
+	<script type="text/plain" id="component-fixed">{% include_relative less/fixed.less %}</script>
+	
+	<script>
+		var map = {% include_relative _data/map.json %},
+			less = {
+				env: 'development'
+			};
+	</script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="public/script.js"></script>
+</body>
+</html>
