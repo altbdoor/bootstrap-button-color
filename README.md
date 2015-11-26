@@ -12,7 +12,7 @@ Options
 
 Version
 ---
-My work sometimes requires me to use old Bootstrap versions, which are not updated. Hence, I scavenged all the `less` files for v3.x. The latest at the moment is v3.3.5.
+My work sometimes requires me to use old Bootstrap versions, which are not updated. Hence, I scavenged all the `less` files for v3.x. The latest at the moment is v3.3.6.
 
 Background color
 ---
