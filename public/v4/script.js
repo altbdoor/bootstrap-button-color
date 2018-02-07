@@ -1,5 +1,5 @@
 (function (Sass) {
-	Sass.setWorkerUrl('public/v4/sass.worker.min.js');
+	Sass.setWorkerUrl('public/v4/sass.worker.min.js')
 	
 	function getDepsOnVersion (version) {
 		var depUrl = 'https://cdn.rawgit.com/twbs/bootstrap/' + version + '/scss/'
@@ -48,11 +48,15 @@
 		var versionVal = $('#form-version').val()
 		var colorVal = $('#form-color').val()
 		var classVal = $('#form-class').val()
+		classVal = slugify(classVal)
 		
 		var processModal = $('#process-modal')
 		$(processModal).modal('show')
 		
 		var scssContent = '\n.btn-custom { @include button-variant(#' + colorVal + ', #' + colorVal + '); }'
+		if ($(this).find('[name="form-outline"]').filter(':checked').val() == 'yes') {
+			scssContent = '\n.btn-custom { @include button-outline-variant(#' + colorVal + '); }'
+		}
 		
 		var promise = getDepsOnVersion(versionVal)
 		promise.then(function (depContent) {
@@ -68,8 +72,20 @@
 				$(processModal).modal('hide')
 				
 				sassInstance.destroy()
-			});
+			})
 		})
+	}).on('reset', function () {
+		$(this).find('[name="form-outline"][value="no"]').parent().trigger('click')
 	})
+	
+	// https://gist.github.com/mathewbyrne/1280286
+	function slugify (text) {
+		return text.toString().toLowerCase()
+			.replace(/\s+/g, '-')           // Replace spaces with -
+			.replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+			.replace(/\-\-+/g, '-')         // Replace multiple - with single -
+			.replace(/^-+/, '')             // Trim - from start of text
+			.replace(/-+$/, '');            // Trim - from end of text
+	}
 	
 })(Sass)
