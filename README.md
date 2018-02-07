@@ -4,10 +4,26 @@ bootstrap-button-color
 The Buttons component from [Bootstrap](https://github.com/twbs/bootstrap)
 with a [customizable color generator](http://altbdoor.github.io/bootstrap-button-color/).
 
-Currently adhering to Bootstrap version 3.x.
+Currently adhering to Bootstrap version 4.x.
 
 
-Options
+Options for V4
+===
+
+Version
+---
+The version of Bootstrap to fetch the SCSS files and generate.
+
+Color
+---
+Defines the main color of the button.
+
+Class name
+---
+Assigns a custom class name, so you can smack it directly into the CSS.
+
+
+Options for V3
 ===
 
 Version
