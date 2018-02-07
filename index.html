@@ -5,29 +5,31 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
 	<title>Bootstrap Button Color · altbdoor.github.io</title>
 	
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" href="public/style.css">
-	
-	<style id="output-style-default"></style>
-	<style id="output-style-themed"></style>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<style id="output-style"></style>
 </head>
 <body>
-	<div class="container">
+	<div class="container py-5">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
+			<div class="col-md-8 offset-md-2">
 				<h1>Bootstrap Button Color</h1>
-				<h4>A generator for Bootstrap's v3.x Buttons</h4>
+				<h4>
+					A generator for Bootstrap's v4.x Buttons
+					(Looking for <a href="./v3/">v3.x</a>?)
+				</h4>
 				
-				<form id="generator-form" class="form-horizontal">
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Version</label>
+				<hr>
+				
+				<form id="generator-form">
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label text-left text-sm-right">Version</label>
 						<div class="col-sm-9">
 							<select id="form-version" class="form-control">
-								{% for item in site.data.map reversed %}
+								{% for item in site.data.map.v4 reversed %}
 									{% if forloop.first == true %}
 										<option value="{{ item }}" selected>{{ item }} (Latest)</option>
 									{% else %}
@@ -37,89 +39,91 @@
 							</select>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Background color</label>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label text-left text-sm-right">Color</label>
 						<div class="col-sm-9">
 							<div class="input-group">
-								<span class="input-group-addon">#</span>
-								<input type="text" id="form-bg" class="form-control" value="5cb85c">
+								<div class="input-group-prepend">
+									<span class="input-group-text">#</span>
+								</div>
+								<input type="text" id="form-color" class="form-control" value="5cb85c">
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Text color</label>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label text-left text-sm-right">Class name</label>
 						<div class="col-sm-9">
 							<div class="input-group">
-								<span class="input-group-addon">#</span>
-								<input type="text" id="form-color" class="form-control" value="fff">
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Class name</label>
-						<div class="col-sm-9">
-							<div class="input-group">
-								<span class="input-group-addon">btn-</span>
+								<div class="input-group-prepend">
+									<span class="input-group-text">btn-</span>
+								</div>
 								<input type="text" id="form-class" class="form-control" value="custom">
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="col-sm-9 col-sm-offset-3">
-							<input type="submit" value="Generate" class="btn btn-primary btn-lg">
-							<input type="reset" value="Reset to Default" class="btn btn-default btn-lg">
+					<div class="row">
+						<div class="col-sm-9 offset-sm-3">
+							<button class="btn btn-primary btn-lg" type="submit">
+								Generate
+							</button>
+							<button class="btn btn-default btn-lg" type="reset">
+								Reset to Default
+							</button>
 						</div>
 					</div>
 				</form>
 				
-				<div class="row">
-					<div class="col-sm-6">
-						<h4>Output Default</h4>
-						<button class="btn btn-block btn-custom-default">Normal</button>
-						<button class="btn btn-block btn-custom-default active">Active</button>
-						<button class="btn btn-block btn-custom-default" disabled>Disabled</button>
-						
-						<textarea id="output-default" rows="15" class="output form-control"></textarea>
+				<hr>
+				
+				<h4 class="text-center">Output</h4>
+				
+				<div class="row mb-3">
+					<div class="col-12 col-md-4 mb-2 mb-sm-0">
+						<button type="button" class="btn btn-block btn-custom">
+							Normal
+						</button>
 					</div>
-					<div class="col-sm-6">
-						<hr class="visible-xs-block">
-						
-						<h4>Output Themed</h4>
-						<button class="btn btn-block btn-custom-themed">Normal</button>
-						<button class="btn btn-block btn-custom-themed active">Active</button>
-						<button class="btn btn-block btn-custom-themed" disabled>Disabled</button>
-						
-						<textarea id="output-themed" rows="15" class="output form-control"></textarea>
+					<div class="col-12 col-md-4 mb-2 mb-sm-0">
+						<button type="button" class="btn btn-block btn-custom focus">
+							Focus
+						</button>
+					</div>
+					<div class="col-12 col-md-4 mb-2 mb-sm-0">
+						<button type="button" class="btn btn-block btn-custom disabled">
+							Disabled
+						</button>
 					</div>
 				</div>
 				
+				<textarea id="output-text" rows="8" class="form-control" style="font-family: monospace;"></textarea>
+				
 				<hr>
 				
-				<div class="text-center small text-muted">
-					<ul class="list list-inline">
-						<li><a href="https://github.com/altbdoor/bootstrap-button-color/">GitHub</a></li>
-						<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
-						<li><a href="http://lesscss.org/">Less</a></li>
-					</ul>
+				<ul class="list-inline text-center small">
+					<li class="list-inline-item"><a href="https://github.com/altbdoor/bootstrap-button-color/">GitHub</a></li>
+					<li class="list-inline-item"><a href="http://getbootstrap.com/">Bootstrap</a></li>
+					<li class="list-inline-item"><a href="https://github.com/medialize/sass.js">sass.js</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div id="process-modal" class="modal fade" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Rendering...</h5>
+				</div>
+				<div class="modal-body">
+					This might take a while. Please be patient...
 				</div>
 			</div>
 		</div>
 	</div>
 	
-	{% for item in site.data.map %}
-	<script type="text/plain" id="component-{{ item | slugify }}">{% include_relative less/{{ item }}.less %}</script>
-	{% endfor %}
-	
-	<script type="text/plain" id="component-fixed">{% include_relative less/fixed.less %}</script>
-	
-	<script>
-		var map = {% include_relative _data/map.json %},
-			less = {
-				env: 'development'
-			};
-	</script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="public/script.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="public/v4/sass.min.js"></script>
+	<script src="public/v4/script.js"></script>
 </body>
 </html>
